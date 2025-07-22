@@ -68,14 +68,6 @@ cd aquabot
 
 ---
 
-## 🧪 Future Improvements
-
-- OTA update
-- Flood detection
-- Battery voltage monitoring
-- Notification via Telegram
-
----
 
 ## 👨‍💻 Author
 
