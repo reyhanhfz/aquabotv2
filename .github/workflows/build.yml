@@ -1,38 +1,42 @@
-name: CI/CD Pipeline
+name: Aquabot ESP8266 CI/CD
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Set up Arduino CLI
-        uses: arduino/setup-arduino-cli@v1
-        with:
-          version: 0.33.1
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download Arduino CLI manually
+        run: |
+          curl -fsSL https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_64bit.tar.gz | tar -xzv
+          sudo mv arduino-cli /usr/local/bin/
 
-      - name: Install ESP8266 Board Core
+      - name: Create Arduino CLI config
+        run: |
+          arduino-cli config init
+          arduino-cli config add board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json
+
+      - name: Install ESP8266 Core
         run: |
           arduino-cli core update-index
           arduino-cli core install esp8266:esp8266
 
-      - name: Install Libraries
+      - name: Install Arduino Libraries
         run: |
           arduino-cli lib install "Blynk"
           arduino-cli lib install "NewPing"
           arduino-cli lib install "Servo"
 
-      - name: Build Arduino Sketch
+      - name: Compile Aquabot Sketch
         run: |
-          arduino-cli compile --fqbn esp8266:esp8266:nodemcuv2 aquabot
+          arduino-cli compile \
+            --fqbn esp8266:esp8266:nodemcuv2 \
+            src
