@@ -1,20 +1,20 @@
-#define BLYNK_TEMPLATE_ID "TMPL68kaopvDz"
-#define BLYNK_TEMPLATE_NAME "jarak"
-#define BLYNK_AUTH_TOKEN "8DalHhkQ7xhPIpR66NBG35mUUlVf-16e"
+#define BLYNK_TEMPLATE_ID "TMPL6_gYDS5u-"
+#define BLYNK_TEMPLATE_NAME "project"
+#define BLYNK_AUTH_TOKEN "tyTk_KYFxH7EaxxsLsDJwtBaOtWFoVll"
 
 #include <ESP8266WiFi.h>
 #include <BlynkSimpleEsp8266.h>
 #include <NewPing.h>
 #include <Servo.h>
 
-char ssid[] = "rico";
-char pass[] = "12345678910";
+char ssid[] = "Agus Racing";
+char pass[] = "siburian";
 
 // Pin setup
 #define TRIG_PIN D2
 #define ECHO_PIN D1
 #define RELAY_PIN D5
-#define SERVO_PIN D7 // Ubah dari D3 → D6 agar stabil
+#define SERVO_PIN D3 // Ganti jika tidak stabil: D4 / D6
 
 #define TINGGI_TANGKI 20 // cm
 #define MAX_SENSOR_DISTANCE 100
@@ -93,15 +93,18 @@ BLYNK_WRITE(V3)
   }
 }
 
-// Kontrol servo dari Blynk V5
+// Kontrol servo dari Blynk (Slider V5, 0–180)
 BLYNK_WRITE(V5)
 {
   int sudut = param.asInt();
   sudut = constrain(sudut, 0, 180);
+  myServo.attach(SERVO_PIN); // Attach saat akan digunakan
   myServo.write(sudut);
   Serial.print("Servo bergerak ke: ");
   Serial.print(sudut);
   Serial.println(" derajat");
+  delay(500); // Opsional untuk memastikan stabil
+  // myServo.detach();            // Bisa diaktifkan jika ingin servo tidak bergetar terus
 }
 
 void setup()
@@ -113,8 +116,8 @@ void setup()
   Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
   timer.setInterval(1000L, sendDistance);
 
-  myServo.attach(SERVO_PIN); // Gunakan rentang PWM seperti di kode lama
-  myServo.write(0);          // Posisi awal
+  myServo.attach(SERVO_PIN); // Posisi awal servo
+  myServo.write(0);
 }
 
 void loop()
