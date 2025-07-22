@@ -1,4 +1,4 @@
-# 🌊 Aquabot ESP8266 – Smart Water Tank Monitoring with Blynk
+# 🌊 Aquabot ESP8266 – Smart Aquarium Monitoring with Blynk
 
 Aquabot is an IoT project built using **ESP8266**, **ultrasonic water level sensor**, **relay-controlled pump**, and **servo motor** to monitor and control a water tank automatically. The system is connected to the **Blynk IoT platform**, providing real-time data and control via mobile app.
 
@@ -8,7 +8,7 @@ Aquabot is an IoT project built using **ESP8266**, **ultrasonic water level sens
 - ⚙️ **Automatic & manual pump control** based on tank level
 - 🔄 **Servo motor control** from Blynk (e.g., valve or lid)
 - 📲 **Blynk dashboard integration** (virtual pins V0–V5)
-- 🔧 Built with **PlatformIO** and supports **GitHub Actions CI**
+
 
 ---
 
@@ -16,7 +16,7 @@ Aquabot is an IoT project built using **ESP8266**, **ultrasonic water level sens
 
 - 1x ESP8266 NodeMCU
 - 1x HC-SR04 Ultrasonic Sensor
-- 1x 5V Relay Module
+- 1x Relay Module
 - 1x Mini Water Pump
 - 1x Servo Motor (e.g., SG90)
 - Jumper wires & Breadboard
@@ -37,25 +37,11 @@ Aquabot is an IoT project built using **ESP8266**, **ultrasonic water level sens
 
 ---
 
-## ⚙️ PlatformIO Setup
 
-**`platformio.ini`** config:
-
-```ini
-[env:nodemcuv2]
-platform = espressif8266
-board = nodemcuv2
-framework = arduino
-lib_deps =
-  blynkkk/Blynk
-  paulstoffregen/NewPing
-```
-
----
 
 ## 🛠️ How to Flash
 
-1. Install [VS Code](https://code.visualstudio.com/) + [PlatformIO](https://platformio.org/install)
+1. Install [VS Code](https://code.visualstudio.com/) 
 2. Clone this repo:
 
 ```bash
@@ -63,18 +49,8 @@ git clone https://github.com/reyhanhfz/aquabot.git
 cd aquabot
 ```
 
-3. Rename and edit `include/secrets.h`:
-
-```cpp
-#define BLYNK_TEMPLATE_ID "TMPLxxxx"
-#define BLYNK_TEMPLATE_NAME "jarak"
-#define BLYNK_AUTH_TOKEN "your_auth_token"
-#define WIFI_SSID "your_wifi"
-#define WIFI_PASS "your_password"
-```
-
-4. Plug in your ESP8266
-5. Build & Upload via PlatformIO (or `pio run --target upload`)
+3. Plug in your ESP8266
+4. Build & Upload via CLI
 
 ---
 
