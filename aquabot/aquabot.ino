@@ -3,7 +3,6 @@
 #include <BlynkSimpleEsp8266.h>
 #include <NewPing.h>
 #include <Servo.h>
-#include "./secrets.h"
 
 #define TRIG_PIN D2
 #define ECHO_PIN D1
@@ -13,6 +12,13 @@
 #define BATAS_NYALA 4
 #define BATAS_MATI 15
 #define MAX_SENSOR_DISTANCE 100
+
+#define BLYNK_TEMPLATE_ID "TMPL68kaopvDz"
+#define BLYNK_TEMPLATE_NAME "aquabot"
+#define BLYNK_AUTH_TOKEN "8DalHhkQ7xhPIpR66NBG35mUUlVf-16e"
+
+#define WIFI_SSID "rico"
+#define WIFI_PASS "12345678910"
 
 NewPing sonar(TRIG_PIN, ECHO_PIN, MAX_SENSOR_DISTANCE);
 BlynkTimer timer;
