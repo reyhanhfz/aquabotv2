@@ -1,5 +1,5 @@
 #define BLYNK_TEMPLATE_ID "TMPL68kaopvDz"
-#define BLYNK_TEMPLATE_NAME "aquabot"
+#define BLYNK_TEMPLATE_NAME "jarak"
 #define BLYNK_AUTH_TOKEN "8DalHhkQ7xhPIpR66NBG35mUUlVf-16e"
 
 #include <ESP8266WiFi.h>
